@@ -1,0 +1,38 @@
+@model IEnumerable<HostelManagementSystem.Models.Room>
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<HostelManagementSystem.Models.AppUser> UserManager
+<a asp-action="Dashboard" asp-controller="Admin"class="btn btn-secondary mb-3">Back to Dashboard</a>
+<h2>Manage Rooms</h2>
+
+<table class="table table-bordered table-striped">
+   <thead>
+       <tr>
+           <th>Id</th>
+           <th>Room Number</th>
+           <th>Block</th>
+           <th>Capacity</th>
+           <th>Hostel Block</th>
+           <th>Actions</th>
+       </tr>
+   </thead>
+   <tbody>
+       @foreach(var room in Model)
+       {
+           <tr>
+            <td>@room.Id</td>
+               <td>@room.RoomNumber</td>
+               <td>@room.Block</td>
+               <td>@room.Capacity</td>
+               <td>@room.HostelBlockBlockId</td>
+               <td>
+                   <!-- You can create Edit and Delete actions later -->
+                   <a asp-action="EditRoom" asp-route-id="@room.Id" class="btn btn-primary btn-sm">Edit</a>
+                   <a asp-action="DeleteRoom" asp-route-id="@room.Id" class="btn btn-danger btn-sm">Delete</a>
+               </td>
+           </tr>
+       }
+   </tbody>
+</table>
+
+<a asp-action="AddRoom" class="btn btn-success">Add New Room</a>
+

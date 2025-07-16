@@ -1,0 +1,106 @@
+@model HostelManagementSystem.Models.LoginViewModel
+
+<style>
+    body {
+        background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
+        min-height: 100vh;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .login-container {
+        background: #fffbea;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(44, 62, 80, 0.2);
+        max-width: 400px;
+        margin: 60px auto;
+        padding: 40px 32px 32px 32px;
+        position: relative;
+        animation: fadeIn 1s;
+    }
+    .login-container h2 {
+        text-align: center;
+        color: #4e54c8;
+        margin-bottom: 28px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+    .form-group label {
+        color: #4e54c8;
+        font-weight: 600;
+    }
+    .form-control {
+        border-radius: 8px;
+        border: 1px solid #bdbdbd;
+        padding: 10px 14px;
+        margin-bottom: 8px;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+    }
+    .form-control:focus {
+        border-color: #8f94fb;
+        box-shadow: 0 0 0 2px #8f94fb33;
+    }
+    .btn-primary {
+        background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
+        border: none;
+        border-radius: 8px;
+        padding: 10px 0;
+        width: 100%;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 12px rgba(44, 62, 80, 0.1);
+        transition: background 0.2s, transform 0.1s;
+    }
+    .btn-primary:hover {
+        background: linear-gradient(90deg, #8f94fb 0%, #4e54c8 100%);
+        transform: translateY(-2px) scale(1.02);
+    }
+    .text-danger {
+        font-size: 0.95rem;
+        color: #e74c3c !important;
+    }
+    /* Removed keyframes to fix Razor build error */
+</style>
+ <div style="text-align:left; margin-bottom:18px;">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary" style="background:#fff; color:#4e54c8; border:1px solid #4e54c8; border-radius:8px; padding:8px 18px; font-weight:600; text-decoration:none;">
+            &larr; Back to Home
+        </a>
+    </div>
+<div class="login-container">
+    <h2>Login</h2>
+   
+    <form asp-action="Login" method="post">
+            <div class="form-group">
+            <label asp-for="Role"></label>
+            <select asp-for="Role" class="form-control">
+                <option value="">-- Select Role --</option>
+                <option>Admin</option>
+                <option>Warden</option>
+                <option>Student</option>
+            </select>
+            <span asp-validation-for="Role" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" type="password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <div style="text-align:center; margin-top:18px;">
+        <a asp-controller="Account" asp-action="Register" class="btn btn-secondary" style="background:#fff; color:#4e54c8; border:1px solid #4e54c8; border-radius:8px; padding:10px 0; width:100%; font-weight:700; font-size:1.1rem; text-decoration:none; display:inline-block;">
+            Register
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

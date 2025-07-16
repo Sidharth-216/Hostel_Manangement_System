@@ -1,0 +1,35 @@
+@model IEnumerable<HostelManagementSystem.Models.ViewModels.AssignedRoomViewModel>
+
+@{
+    ViewData["Title"] = "Assigned Rooms";
+}
+<a asp-action="Dashboard" class="btn btn-secondary">Back to Dashboard</a>
+<h2>Assigned Room Details</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Registration No</th>
+            <th>Branch</th>
+            <th>Room Number</th>
+            <th>Block Name</th>
+            <th>Block ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.StudentName</td>
+                <td>@item.RegNo</td>
+                <td>@item.Branch</td>
+                <td>@item.RoomNumber</td>
+                <td>@item.BlockName</td>
+                <td>@item.BlockId</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

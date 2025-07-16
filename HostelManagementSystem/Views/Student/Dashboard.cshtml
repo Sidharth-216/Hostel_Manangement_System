@@ -1,0 +1,57 @@
+@model HostelManagementSystem.Models.StudentDashboardViewModel
+@{
+    ViewData["Title"] = "Student Dashboard";
+}
+
+<h2 class="mb-4">Welcome to Your Dashboard</h2>
+
+@if (Model == null)
+{
+    <div class="alert alert-danger">No data found. Please contact the admin.</div>
+}
+else
+{
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4>Student Profile</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Full Name:</strong> @Model.FullName </p>
+            <p><strong>Email:</strong> @Model.Email  </p>
+            <p><strong>Roll Number:</strong> @Model.Rollno </p>
+            <p><strong>Registration Number:</strong> @Model.RegNo </p>
+            <p><strong>Branch:</strong> @Model.Branch </p>
+        </div>
+    </div>
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-success text-white">
+            <h4>Room Allocation</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Room Number:</strong> @Model.RoomNumber </p>
+            <p><strong>Block:</strong> @Model.BlockName  </p>
+        </div>
+    </div>
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-warning text-dark">
+            <h4>Fee Details</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Amount:</strong> ₹@Model.FeeAmount</p>
+            <p><strong>Status:</strong> @Model.FeeStatus </p>
+            <p><strong>Generated On:</strong> @(Model.FeeGeneratedOn?.ToString("dd-MM-yyyy") ?? "Not Generated")</p>
+        </div>
+    </div>
+    <div class="text-center my-4">
+    <a asp-controller="Application" asp-action="Apply" class="btn btn-success mx-2">
+        Apply for Hostel
+    </a>
+
+    <a asp-controller="Student" asp-action="ApplicationStatus" class="btn btn-primary mx-2">
+        View Application Status
+    </a>
+</div>
+
+}

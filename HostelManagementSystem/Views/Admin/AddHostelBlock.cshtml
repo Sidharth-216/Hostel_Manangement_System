@@ -1,0 +1,39 @@
+@model HostelManagementSystem.Models.HostelBlock
+<a asp-action="ManageBlock" asp-controller="Admin"class="btn btn-secondary mb-3">Back to Dashboard</a>
+@{
+    ViewData["Title"] = "Add Hostel Block";
+}
+
+<h2 class="text-center text-primary mt-4">Add Hostel Block</h2>
+
+<div class="container mt-4">
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <form asp-action="AddHostelBlock" method="post">
+        <div class="form-group">
+            <label asp-for="BlockName" class="control-label">Block Name</label>
+            <input asp-for="BlockName" class="form-control" />
+            <span asp-validation-for="BlockName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label asp-for="TotalRooms" class="control-label">Total Rooms</label>
+            <input asp-for="TotalRooms" type="number" class="form-control" />
+            <span asp-validation-for="TotalRooms" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success mt-4">Add Block</button>
+        <a asp-action="ManageBlock" class="btn btn-secondary mt-4 ml-2">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

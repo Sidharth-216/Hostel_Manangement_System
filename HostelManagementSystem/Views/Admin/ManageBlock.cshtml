@@ -1,0 +1,28 @@
+@model IEnumerable<HostelManagementSystem.Models.HostelBlock>
+<a asp-action="Dashboard" asp-controller="Admin"class="btn btn-secondary mb-3">Back to Dashboard</a>
+<h2>Manage Blocks</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Block Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var block in Model)
+        {
+            <tr>
+                <td>@block.BlockId</td>
+                <td>@block.BlockName</td>
+                <td>
+                    <a asp-action="EditBlock" asp-route-id="@block.BlockId" class="btn btn-sm btn-primary">Edit</a>
+                    <a asp-action="DeleteBlock" asp-route-id="@block.BlockId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="AddHostelBlock" class="btn btn-success">Add New Block</a>

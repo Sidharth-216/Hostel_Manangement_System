@@ -1,0 +1,13 @@
+@model HostelManagementSystem.Models.HostelApplication
+@{
+    ViewData["Title"]="Delete Application";
+}
+<h2>Delete Application</h2>
+<div class ="alert alert-warning">
+    Are you sure you want to delete Application <strong>@Model.FullName</strong> <strong>@Model.RegNo</strong> <strong>@Model.Branch</strong> <strong>@Model.RollNo</strong> ?
+</div>
+<form asp-action="DeleteApplication">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Confirm Delete</button>
+    <a asp-action="ViewApplication" class="btn btn-secondary">Cancel</a>
+</form>

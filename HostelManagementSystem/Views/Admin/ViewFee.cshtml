@@ -1,0 +1,29 @@
+@model HostelManagementSystem.Models.ViewModels.AdminFeeViewModel
+
+@{
+    ViewBag.Title = "View Fee Details";
+}
+
+<h2>Fee Details</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<div class="card mt-4">
+    <div class="card-body">
+        <p><strong>Student Name:</strong> @Model.StudentName</p>
+        <p><strong>Registration No:</strong> @Model.RegNo</p>
+        <p><strong>Room Number:</strong> @Model.RoomNumber</p>
+        <p><strong>Fee Amount:</strong> ₹@Model.FeeAmount</p>
+        <p><strong>Status:</strong> @Model.FeeStatus</p>
+        <p><strong>Generated On:</strong> @Model.FeeGeneratedOn?.ToString("dd-MM-yyyy")</p>
+    </div>
+</div>
+
+<a asp-action="ManageFees" class="btn btn-secondary mt-3">Back to Manage Fees</a>

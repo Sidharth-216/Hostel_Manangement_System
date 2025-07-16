@@ -1,0 +1,64 @@
+@model HostelManagementSystem.Models.HostelApplication
+
+
+<h2>Hostel Application Form</h2>
+
+<form asp-action="Apply" method="post">
+    <div class="form-group">
+        <label asp-for="RegNo"></label>
+        <input asp-for="RegNo" class="form-control" />
+        <span asp-validation-for="RegNo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Aadhaar"></label>
+        <input asp-for="Aadhaar" class="form-control" />
+        <span asp-validation-for="Aadhaar" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <textarea asp-for="Address" class="form-control"></textarea>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FatherName"></label>
+        <input asp-for="FatherName" class="form-control" />
+        <span asp-validation-for="FatherName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MotherName"></label>
+        <input asp-for="MotherName" class="form-control" />
+        <span asp-validation-for="MotherName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AlternatePhone"></label>
+        <input asp-for="AlternatePhone" class="form-control" />
+        <span asp-validation-for="AlternatePhone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FatherOccupation"></label>
+        <input asp-for="FatherOccupation" class="form-control" />
+        <span asp-validation-for="FatherOccupation" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FatherPhone"></label>
+        <input asp-for="FatherPhone" class="form-control" />
+        <span asp-validation-for="FatherPhone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group form-check">
+        <input asp-for="DeclarationAccepted" class="form-check-input" />
+        <label asp-for="DeclarationAccepted" class="form-check-label">
+            I hereby declare that all the above information is true to the best of my knowledge.
+        </label>
+        <span asp-validation-for="DeclarationAccepted" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Application</button>
+</form>

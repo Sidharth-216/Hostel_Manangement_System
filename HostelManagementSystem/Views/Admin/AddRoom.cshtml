@@ -1,0 +1,53 @@
+@model HostelManagementSystem.Models.Room
+@{
+    ViewData["Title"] = "Add New Room";
+}
+<a asp-action="ManageRooms" asp-controller="Admin"class="btn btn-secondary mb-3">Back to Dashboard</a>
+<h2>Add New Room</h2>
+
+<!-- Display success or error TempData messages -->
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<!-- Display validation summary -->
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<form asp-action="AddRoom" method="post">
+    <div class="form-group">
+        <label asp-for="RoomNumber"></label>
+        <input asp-for="RoomNumber" class="form-control" />
+        <span asp-validation-for="RoomNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Block"></label>
+        <input asp-for="Block" class="form-control" />
+        <span asp-validation-for="Block" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Capacity"></label>
+        <input asp-for="Capacity" class="form-control" type="number" min="1" />
+        <span asp-validation-for="Capacity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HostelBlockBlockId">Hostel Block</label>
+        <select asp-for="HostelBlockBlockId" class="form-control" asp-items="ViewBag.HostelBlocks">
+            <option value="">-- Select Hostel Block --</option>
+        </select>
+        <span asp-validation-for="HostelBlockBlockId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Room</button>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

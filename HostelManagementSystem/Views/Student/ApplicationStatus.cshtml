@@ -1,0 +1,32 @@
+@model HostelManagementSystem.Models.HostelApplication
+
+
+<h2>Application Status</h2>
+
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+            <th>Full Name</th>
+            <td>@Model.FullName</td>
+        </tr>
+        <tr>
+            <th>Registration Number</th>
+            <td>@Model.RegNo</td>
+        </tr>
+        <tr>
+            <th>Branch</th>
+            <td>@Model.Branch</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>@Model.Status</td>
+        </tr>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">
+        @ViewBag.Message
+    </div>
+}

@@ -1,0 +1,39 @@
+@model HostelManagementSystem.Models.Room
+
+<h2>Edit Room</h2>
+
+<form asp-action="EditRoom" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="RoomNumber"></label>
+        <input asp-for="RoomNumber" class="form-control" />
+        <span asp-validation-for="RoomNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Block"></label>
+        <input asp-for="Block" class="form-control" />
+        <span asp-validation-for="Block" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Capacity"></label>
+        <input asp-for="Capacity" class="form-control" />
+        <span asp-validation-for="Capacity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HostelBlockBlockId">Hostel Block</label>
+        <select asp-for="HostelBlockBlockId" class="form-control" asp-items="ViewBag.HostelBlocks">
+            <option value="">-- Select Block --</option>
+        </select>
+        <span asp-validation-for="HostelBlockBlockId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Update</button>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

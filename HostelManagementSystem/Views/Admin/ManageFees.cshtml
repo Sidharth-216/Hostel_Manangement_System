@@ -1,0 +1,46 @@
+@model IEnumerable<HostelManagementSystem.Models.ViewModels.AdminFeeViewModel>
+<a asp-action="Dashboard" asp-controller="Admin"class="btn btn-secondary mb-3">Back to Dashboard</a>
+@{
+    ViewBag.Title = "Manage Fees";
+}
+
+<h2>Manage Fees</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Registration No</th>
+            <th>Student Name</th>
+            <th>Room Number</th>
+            <th>Fee Amount</th>
+            <th>Status</th>
+            <th>Generated On</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.RegNo</td>
+            <td>@item.StudentName</td>
+            <td>@item.RoomNumber</td>
+            <td>@item.FeeAmount</td>
+            <td>@item.FeeStatus</td>
+            <td>@item.FeeGeneratedOn?.ToString("dd-MM-yyyy")</td>
+            <td>
+                <a asp-action="ViewFee" asp-route-regNo="@item.RegNo" class="btn btn-sm btn-info">View</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

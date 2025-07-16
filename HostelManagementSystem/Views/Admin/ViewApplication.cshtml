@@ -1,0 +1,165 @@
+@model IEnumerable<HostelManagementSystem.Models.HostelApplication>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #f8cdda 0%, rgb(103, 128, 228) 100%);
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    h2 {
+        color: #7f53ac;
+        text-align: center;
+        margin-top: 30px;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+    .table {
+        margin: 40px auto;
+        width: 90%;
+        background: #fff0f6;
+        border-radius: 18px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        overflow: hidden;
+    }
+    .table thead {
+        background: linear-gradient(90deg, #7f53ac 0%, #647dee 100%);
+        color: #fff;
+    }
+    .table th, .table td {
+        padding: 16px 12px;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 1.05rem;
+    }
+    .table tbody tr {
+        transition: background 0.2s;
+    }
+    .table tbody tr:hover {
+        background: #ffe3ec;
+    }
+    .btn {
+        border: none;
+        border-radius: 20px;
+        padding: 6px 18px;
+        font-weight: 500;
+        transition: background 0.2s, color 0.2s;
+        margin: 2px 2px;
+    }
+    .btn-success {
+        background: #ff7eb3;
+        color: #fff;
+    }
+    .btn-success:hover {
+        background: #ff758c;
+        color: #fff;
+    }
+    .btn-danger {
+        background: #647dee;
+        color: #fff;
+    }
+    .btn-danger:hover {
+        background: #7f53ac;
+        color: #fff;
+    }
+    .btn-primary {
+        background: #f7971e;
+        color: #fff;
+    }
+    .btn-primary:hover {
+        background: #ffd200;
+        color: #7f53ac;
+    }
+    .alert {
+        width: 60%;
+        margin: 20px auto;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        box-shadow: 0 2px 8px rgba(127, 83, 172, 0.08);
+    }
+    .alert-success {
+        background: #ffe3ec;
+        color: #7f53ac;
+        border-left: 6px solid #7f53ac;
+    }
+    .alert-danger {
+        background: #fbeee6;
+        color: #f7971e;
+        border-left: 6px solid #f7971e;
+    }
+    .alert-info {
+        background: #e3f0ff;
+        color: #647dee;
+        border-left: 6px solid #647dee;
+    }
+</style>
+<a asp-action="Dashboard" asp-controller="Admin"class="btn btn-secondary mb-3">Back to Dashboard</a>
+<h2>Student Applications</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Regt.No</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Branch</th>
+            <th>Phone Number</th>
+            <th>Status</th>
+            <th>Actions</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var app in Model)
+        {
+            <tr>
+                <td>@app.FullName</td>
+                <td>@app.RegNo</td>
+                <td>@app.Email</td>
+                <td>@app.Gender</td>
+                <td>@app.Branch</td>
+                <td>@app.PhoneNumber</td>
+                <td>@app.Status</td>
+                <td>
+                    @if (app.Status == "Pending")
+                    {
+                        <form asp-action="Approve" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@app.Id" />
+                            <button type="submit" class="btn btn-success btn-sm" style="background-color: #28a745; color: #fff;">Approve</button>
+                        </form>
+                        <form asp-action="Reject" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@app.Id" />
+                            <button type="submit" class="btn btn-danger btn-sm" style="background-color: #dc3545; color: #fff;">Reject</button>
+                        </form>
+                    }
+                    else if (app.Status == "Approved")
+                    {
+                        <a asp-action="AssignRoom" asp-route-email="@app.Email" class="btn btn-primary btn-sm">Assign Room</a>
+
+                        
+                    }
+                    else
+                    {
+                        <span>@app.Status</span>
+                    }
+                </td>
+                <td>
+                   <a asp-action="DeleteApplication" asp-route-id="@app.Id" class="btn btn-danger btn-sm">Delete</a>   
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success mt-3">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger mt-3">@TempData["Error"]</div>
+}
+@if (TempData["Info"] != null)
+{
+    <div class="alert alert-info mt-3">@TempData["Info"]</div>
+}

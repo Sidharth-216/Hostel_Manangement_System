@@ -1,0 +1,71 @@
+@{
+    ViewData["Title"] = "Warden Dashboard";
+}
+
+<style>
+    body {
+        background: linear-gradient(to right, #6a11cb, #2575fc);
+        font-family: 'Segoe UI', sans-serif;
+        color: #fff;
+    }
+    .dashboard-container {
+        max-width: 1000px;
+        margin: auto;
+        padding: 40px 20px;
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: bold;
+    }
+    .card {
+        background: #ffffff20;
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        background: #ffffff30;
+    }
+    .card h4 {
+        color: #fff;
+        margin-bottom: 12px;
+    }
+    .card a {
+        color: #f1f1f1;
+        text-decoration: underline;
+        font-weight: bold;
+    }
+</style>
+
+<div class="dashboard-container">
+    <h2>Welcome, Warden</h2>
+
+    <div class="card">
+        <h4>🧑‍🎓 View Assigned Students</h4>
+        <a asp-action="ViewAssignedStudents" asp-controller="Warden">Go to list</a>
+    </div>
+
+    <div class="card">
+        <h4>📢 Post Hostel Notice</h4>
+        <a asp-action="PostNotice" asp-controller="Warden">Add Notice</a>
+    </div>
+
+    <div class="card">
+        <h4>📄 View Complaints</h4>
+        <a asp-action="ViewComplaints" asp-controller="Warden">Check Requests</a>
+    </div>
+
+    <div class="card">
+        <h4>📆 Hostel Events/Calendar</h4>
+        <a asp-action="HostelCalendar" asp-controller="Warden">View Calendar</a>
+    </div>
+
+    <div class="card">
+        <h4>🔐 Settings</h4>
+        <a asp-controller="Account" asp-action="ChangePassword">Update Password</a>
+    </div>
+</div>
